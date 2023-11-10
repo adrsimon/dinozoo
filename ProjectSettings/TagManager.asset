@@ -6,7 +6,10 @@ TagManager:
   tags:
   - CinemachineTarget
   - Water
-  layers:
+  - Dino
+  - Fish
+  - Trash
+layers:
   - Default
   - TransparentFX
   - Ignore Raycast
