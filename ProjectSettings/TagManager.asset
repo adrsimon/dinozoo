@@ -9,7 +9,7 @@ TagManager:
   - Dino
   - Fish
   - Trash
-layers:
+  layers:
   - Default
   - TransparentFX
   - Ignore Raycast
