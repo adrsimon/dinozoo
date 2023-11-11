@@ -14,6 +14,8 @@ public class Flotaison : MonoBehaviour
     string waterVolumeTag = "Water";
     [SerializeField]
     float angularDragInWater = 0.5f;
+    [SerializeField]
+    float waterDamping = 1f;
 
 
     private Rigidbody rb;
@@ -82,7 +84,7 @@ public class Flotaison : MonoBehaviour
 
                         float buoyancyForce = buoyantForce * Physics.gravity.magnitude * coll.bounds.size.x * coll.bounds.size.z * Mathf.Clamp01(depth / coll.bounds.size.y);
                         rb.AddForce(0f, buoyancyForce, 0f);
-
+                        rb.AddForce(-rb.velocity * waterDamping);
                         rb.angularDrag = angularDragInWater;
                     }
                     else
