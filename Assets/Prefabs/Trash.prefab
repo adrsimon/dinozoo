@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7372893651430271787}
   - component: {fileID: 7372893651430271784}
   - component: {fileID: 7372893651430271785}
-  - component: {fileID: 1690260109802246637}
   m_Layer: 3
   m_Name: Trash
   m_TagString: Trash
@@ -115,15 +114,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1690260109802246637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7372893651430271790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d349d53c8db74c499d59ed223dc032e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
