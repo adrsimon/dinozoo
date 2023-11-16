@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3329089582320838587}
   - component: {fileID: 3329089582320838584}
   - component: {fileID: 3329089582320838585}
+  - component: {fileID: 1087548105468929856}
+  - component: {fileID: 2995611514299048116}
   m_Layer: 3
   m_Name: Fish
   m_TagString: Fish
@@ -114,3 +116,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1087548105468929856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329089582320838590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d349d53c8db74c499d59ed223dc032e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2995611514299048116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329089582320838590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378f4953ec89c4237b91061ba203fa41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buoyantForce: 8
+  depthPower: 1
+  offsetY: 0
+  waterVolumeTag: Water
+  angularDragInWater: 0.5
