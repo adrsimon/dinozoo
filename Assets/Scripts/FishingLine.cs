@@ -19,7 +19,7 @@ public class FishingLine : MonoBehaviour
     private float minRopeLength = 1f;
     private float maxRopeLength = 20f;
     //Mass of what the rope is carrying
-    private float loadMass = 100f;
+    private float loadMass = 1f;
     //How fast we can add more/less rope
     float winchSpeed = 2f;
 
