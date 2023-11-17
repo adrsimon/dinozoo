@@ -72,6 +72,18 @@ crashlytics-build.properties
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
+Temporary
+
+Assets/SteamVR/
+Assets/SteamVR_Input/
+Assets/XR/
+Assets/MobileDependencyResolver/
+Assets/Editor/
+Assets/SteamVR_Resources/
+Assets/StreamingAssets/
+
+.vsconfig
+
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
