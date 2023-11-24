@@ -11,11 +11,15 @@ public class DinoScript : MonoBehaviour
     private bool isRed = false;
     private float redTime = 0f;
     private float maxRedTime = 10f; // Maximum time the dino can stay red
+    private Rigidbody rb; // Rigidbody for movement and jumping
+    public float jumpForce = 300f;
+    private bool onGround = true;
 
     void Start()
     {
         originalBodyColor = dinosaur_body.GetComponent<Renderer>().material.color;
         originalExtremityColor = dinosaur_extremity.GetComponent<Renderer>().material.color;
+        rb = GetComponent<Rigidbody>();
         StartCoroutine(HungerCycle());
         healthManager = FindObjectOfType<HealthManager>();
     }
@@ -27,6 +31,10 @@ public class DinoScript : MonoBehaviour
             ResetColors();
             Destroy(other.gameObject);
         }
+        else if (other.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
     }
 
     private void Update()
@@ -34,10 +42,13 @@ public class DinoScript : MonoBehaviour
         if (isRed)
         {
             redTime += Time.deltaTime;
+            if (onGround)
+            {
+                AngryMovement();
+            }
 
             if (redTime >= maxRedTime)
             {
-                // Reset colors after staying red for more than maxRedTime
                 ResetColors();
                 healthManager.TakeDamage(1); // Call TakeDamage function from HealthManager
             }
@@ -59,6 +70,7 @@ public class DinoScript : MonoBehaviour
         dinosaur_extremity.GetComponent<Renderer>().material.color = Color.red;
         isRed = true;
         redTime = 0f;
+        AngryMovement();
     }
 
     void ResetColors()
@@ -67,5 +79,25 @@ public class DinoScript : MonoBehaviour
         dinosaur_extremity.GetComponent<Renderer>().material.color = originalExtremityColor;
         isRed = false;
         redTime = 0f;
+    }
+
+    void AngryMovement()
+    {
+        // Start the JumpInRow coroutine
+        StartCoroutine(JumpInRow());
+    }
+
+    IEnumerator JumpInRow()
+    {
+        // While the dinosaur is red, make it jump and then wait for a short period before the next jump
+        while (isRed)
+        {
+            // Make the dinosaur jump vertically
+            rb.AddForce(Vector3.up * jumpForce);
+            onGround = false;
+
+            // Wait for a short period before the next jump
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
