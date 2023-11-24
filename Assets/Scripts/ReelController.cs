@@ -19,7 +19,7 @@ public class ReelController : MonoBehaviour
 
     void OnReel() 
     {
-        // get grabbed object
+        // get grabbed objectz
         Rigidbody grabbedObject = GetComponent<RayCasting>().getGrabbedObject();
         if (grabbedObject && grabbedObject.CompareTag("Rod")) {
             Appat.transform.position = Vector3.MoveTowards(Appat.transform.position, transform.position, 0.1f);
