@@ -5,7 +5,7 @@ using TMPro;
 
 public class HealthManager : MonoBehaviour
 {
-    public int health = 3;
+    public int health = 4;
     public Image heartContainer; // The Image component where you want to display the hearts
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -15,9 +15,11 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RectTransform gameOverTextRect = gameOverText.GetComponent<RectTransform>();
+        RectTransform heartContainerRect = heartContainer.GetComponent<RectTransform>();
         gameOverText.enabled = false; // Hide the "Game Over" text at the start of the game
         Vector2 centerPosition = new Vector2(0, 0); // Center position for both UI elements
-        gameOverText.rectTransform.anchoredPosition = centerPosition; // Position the "Game Over" text at the center
+        //gameOverText.rectTransform.anchoredPosition = centerPosition; // Position the "Game Over" text at the center
         heartContainer.rectTransform.anchoredPosition = centerPosition; // Position the hearts at the center
 
         for (int i = 0; i < health; i++)
