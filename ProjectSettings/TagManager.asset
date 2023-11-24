@@ -9,6 +9,7 @@ TagManager:
   - Dino
   - Fish
   - Trash
+  - Rod
   layers:
   - Default
   - TransparentFX

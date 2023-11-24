@@ -53,4 +53,9 @@ public class RayCasting : MonoBehaviour
             }
         }
     }
+
+    public Rigidbody getGrabbedObject()
+    {
+        return grabbdedObject;
+    }
 }
