@@ -16,6 +16,10 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         gameOverText.enabled = false; // Hide the "Game Over" text at the start of the game
+        Vector2 centerPosition = new Vector2(0, 0); // Center position for both UI elements
+        gameOverText.rectTransform.anchoredPosition = centerPosition; // Position the "Game Over" text at the center
+        heartContainer.rectTransform.anchoredPosition = centerPosition; // Position the hearts at the center
+
         for (int i = 0; i < health; i++)
         {
             Image heart = new GameObject("Heart").AddComponent<Image>(); // Create a new Image GameObject for each heart
