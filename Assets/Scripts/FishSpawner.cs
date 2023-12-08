@@ -5,8 +5,8 @@ public class FishSpawner : MonoBehaviour
     public GameObject littleFish;
     public GameObject midFish;
     public GameObject bigFish;
-    public int maxFish = 20;
-    public float spawnRadius = 6f;
+    public int maxFish = 30;
+    public float spawnRadius = 2f;
     public float spawnHeight = -1f;
     private int fishCount;
 

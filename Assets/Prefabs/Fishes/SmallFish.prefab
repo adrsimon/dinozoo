@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  radius: 7
+  radius: 6
+  bowlCenter: {x: 8, y: -3, z: -25}
   minThreshold: 0.1
   maxThreshold: 1
   targetHeight: -1

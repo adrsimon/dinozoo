@@ -5,7 +5,8 @@ using UnityEngine;
 public class FishMvmt : MonoBehaviour
 {
     public float speed = 1f;
-    public float radius = 6f;
+    public float radius = 0.1f; // Rayon du cercle dans lequel les poissons peuvent se déplacer
+    public Vector3 bowlCenter = Vector3.zero; // Centre du "bocal"
     public float minThreshold = 0.1f;
     public float maxThreshold = 1f;
     public float targetHeight = -1f;
@@ -15,8 +16,8 @@ public class FishMvmt : MonoBehaviour
 
     void Start()
     {
-        ChangeTargetPosition();
         targetThreshold = Random.Range(minThreshold, maxThreshold);
+        ChangeTargetPosition();
     }
 
     void Update()
@@ -34,8 +35,10 @@ public class FishMvmt : MonoBehaviour
 
     void ChangeTargetPosition()
     {
-        targetPosition = transform.position + Random.insideUnitSphere * radius;
+        Vector3 randomDirection = Random.insideUnitSphere.normalized * radius;
+        targetPosition = bowlCenter + randomDirection;
         targetPosition.y = targetHeight;
+        targetThreshold = Random.Range(minThreshold, maxThreshold);
     }
 
     void MoveTowardsTarget()
@@ -45,12 +48,14 @@ public class FishMvmt : MonoBehaviour
         LookAtTarget(direction);
     }
 
-    void LookAtTarget(Vector3 direction)
+    void LookAtTarget(Vector3 direction) 
     {
         if (direction != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, speed * Time.deltaTime);
+            toRotation *= Quaternion.Euler(0, 90, 0); // Ajoute une rotation de 90 degrés autour de l'axe Y
+            float rotationSpeed = 5f;
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
     }
 }
