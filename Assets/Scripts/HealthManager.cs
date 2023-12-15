@@ -6,6 +6,12 @@ using TMPro;
 public class HealthManager : MonoBehaviour
 {
     public int health = 4;
+    public GameObject dinosaur_body1;
+    public GameObject dinosaur_body2;
+    public GameObject dinosaur_body3;
+    private Animator animator1;
+    private Animator animator2;
+    private Animator animator3;
     public Image heartContainer; // The Image component where you want to display the hearts
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -21,6 +27,9 @@ public class HealthManager : MonoBehaviour
         Vector2 centerPosition = new Vector2(0, 0); // Center position for both UI elements
         //gameOverText.rectTransform.anchoredPosition = centerPosition; // Position the "Game Over" text at the center
         heartContainer.rectTransform.anchoredPosition = centerPosition; // Position the hearts at the center
+        animator1 = dinosaur_body1.GetComponent<Animator>();
+        animator2 = dinosaur_body2.GetComponent<Animator>();
+        animator3 = dinosaur_body3.GetComponent<Animator>();
 
         for (int i = 0; i < health; i++)
         {
@@ -56,6 +65,9 @@ public class HealthManager : MonoBehaviour
         if (health <= 0)
         {
             gameOverText.enabled = true; // Show the "Game Over" text when the player's health reaches zero
+            animator1.SetBool("isDead", true);
+            animator2.SetBool("isDead", true);
+            animator3.SetBool("isDead", true);
         }
     }
 }
