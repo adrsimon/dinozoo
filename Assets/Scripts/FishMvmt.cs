@@ -11,6 +11,10 @@ public class FishMvmt : MonoBehaviour
     public float maxThreshold = 1f;
     public float targetHeight = -1f;
 
+    public bool grabbed = false;
+    private bool attachedToRod = false;
+    private Rigidbody appat;
+
     private Vector3 targetPosition;
     private float targetThreshold;
 
@@ -22,6 +26,15 @@ public class FishMvmt : MonoBehaviour
 
     void Update()
     {
+        if (this.grabbed) {
+            return;
+        }
+
+        if (this.attachedToRod)
+        {
+            transform.position = appat.position;
+        }
+
         float distance = Vector3.Distance(transform.position, targetPosition);
         if (distance < targetThreshold)
         {
@@ -30,6 +43,15 @@ public class FishMvmt : MonoBehaviour
         else
         {
             MoveTowardsTarget();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Appat") && !this.grabbed)
+        {
+            SetAttachedToRod(true);
+            appat = collision.collider.GetComponent<Rigidbody>();
         }
     }
 
@@ -57,5 +79,17 @@ public class FishMvmt : MonoBehaviour
             float rotationSpeed = 5f;
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    public void SetAttachedToRod(bool value)
+    {
+        attachedToRod = true;
+    }
+
+    public void SetGrabbed(bool value)
+    {
+        attachedToRod = false;
+        grabbed = value;
+        GetComponent<Rigidbody>().useGravity = true;
     }
 }
