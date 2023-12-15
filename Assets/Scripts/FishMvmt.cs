@@ -20,6 +20,7 @@ public class FishMvmt : MonoBehaviour
 
     void Start()
     {
+        GetComponent<BoxCollider>().isTrigger = true;
         targetThreshold = Random.Range(minThreshold, maxThreshold);
         ChangeTargetPosition();
     }
@@ -33,6 +34,7 @@ public class FishMvmt : MonoBehaviour
         if (this.attachedToRod)
         {
             transform.position = appat.position;
+            return;
         }
 
         float distance = Vector3.Distance(transform.position, targetPosition);
@@ -46,12 +48,12 @@ public class FishMvmt : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.CompareTag("Appat") && !this.grabbed)
+        if (collision.CompareTag("Appat") && !this.grabbed)
         {
             SetAttachedToRod(true);
-            appat = collision.collider.GetComponent<Rigidbody>();
+            appat = collision.GetComponent<Rigidbody>();
         }
     }
 
@@ -83,7 +85,8 @@ public class FishMvmt : MonoBehaviour
 
     public void SetAttachedToRod(bool value)
     {
-        attachedToRod = true;
+        attachedToRod = value;
+        GetComponent<BoxCollider>().isTrigger = false;
     }
 
     public void SetGrabbed(bool value)
