@@ -33,7 +33,7 @@ public class AnimationScriptDino : MonoBehaviour
             }
         }
     }
-    private void OnTriggersEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Fish"))
         {

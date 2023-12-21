@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1772808407936119433}
   - component: {fileID: 1772808407936119434}
   - component: {fileID: 1772808407936119435}
-  - component: {fileID: 1772808407936119439}
   m_Layer: 5
   m_Name: CanvasHealth (1)
   m_TagString: Untagged
@@ -83,7 +82,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1772808407936119435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,23 +100,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1772808407936119439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772808407936119428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dbf20034fc4484581f393e8ca10f02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
-  dinosaur_body1: {fileID: 0}
-  dinosaur_body2: {fileID: 0}
-  dinosaur_body3: {fileID: 0}
-  heartContainer: {fileID: 0}
-  fullHeart: {fileID: 21300000, guid: 3f0286838dce1a44198ca2c80eed6f15, type: 3}
-  emptyHeart: {fileID: 21300000, guid: 3dba7c909513fb94fbbe5b35e2297272, type: 3}
-  gameOverText: {fileID: 0}
