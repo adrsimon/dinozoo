@@ -25,13 +25,15 @@ public class FishMvmt : MonoBehaviour
         ChangeTargetPosition();
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        Debug.Log("rod" + this.attachedToRod);
+        Debug.Log("grab" + this.grabbed);
         if (this.grabbed) {
             return;
         }
 
-        if (this.attachedToRod)
+        if (this.attachedToRod && !this.grabbed)
         {
             transform.position = appat.position;
             return;
@@ -91,8 +93,8 @@ public class FishMvmt : MonoBehaviour
 
     public void SetGrabbed(bool value)
     {
-        attachedToRod = false;
-        grabbed = value;
+        this.grabbed = value;
+        this.attachedToRod = false;
         GetComponent<Rigidbody>().useGravity = true;
     }
 }
