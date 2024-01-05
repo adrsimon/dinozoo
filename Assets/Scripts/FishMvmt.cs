@@ -16,9 +16,6 @@ public class FishMvmt : MonoBehaviour
     private Vector3 targetPosition;
     private float targetThreshold;
 
-    //private Coroutine wander = null;
-   // private Coroutine attach = null;
-
     private bool fished = false;
     private bool grabbed = false;
 
@@ -27,7 +24,6 @@ public class FishMvmt : MonoBehaviour
         GetComponent<BoxCollider>().isTrigger = true;
         targetThreshold = Random.Range(minThreshold, maxThreshold);
         ChangeTargetPosition();
-     //   wander = StartCoroutine(Wandering());
         fished = false;
     }
 
@@ -35,6 +31,7 @@ public class FishMvmt : MonoBehaviour
     {
         if(!fished)
         {
+            // si le poisson n'est pas péché il se déplace comme il le souhaite
             float distance = Vector3.Distance(transform.position, targetPosition);
             if (distance < targetThreshold)
             {
@@ -46,52 +43,15 @@ public class FishMvmt : MonoBehaviour
             }
         }else if (!grabbed)
         {
-            // StopCoroutine(wander);
-            // attach = StartCoroutine(Attached());
+            // Si il est péché, il est attaché à l'appat
             transform.position = appat.position;
         } else if (grabbed)
         {
             Debug.Log("je me détache !!");
-           // StopAllCoroutines();
-           // Destroy(gameObject);
         }
-    }
-    /*
-    IEnumerator Wandering()
-    {
-        Debug.Log("debut de balade dans le monde");
-        while (!fished)
-        {
-           // if (fished)
-            //{
-                Debug.Log("wandering");
-           // }
-            float distance = Vector3.Distance(transform.position, targetPosition);
-            if (distance < targetThreshold)
-            {
-                ChangeTargetPosition();
-            }
-            else
-            {
-                MoveTowardsTarget();
-            }
-            yield return null;
-        }
-            yield return null;
     }
 
-    IEnumerator Attached()
-    {
-        while (!grabbed)
-        {
-            Debug.Log("je suis attaché !");
-            transform.position = appat.position;
-            yield return null;      
-        }
-            yield return null;      
-    }
-    */
-
+    // Change l'etat du poisson en attrapé
     public void SetGrabbed()
     {
         Debug.Log("grabbé !");
@@ -102,6 +62,7 @@ public class FishMvmt : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        // en cas de collision avec un appat, il est mis à péché = true.
         if (collision.CompareTag("Appat") && !fished)
         {
             Debug.Log("collision !");

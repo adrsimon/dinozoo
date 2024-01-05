@@ -64,6 +64,7 @@ public class DinoScript : MonoBehaviour
         }
     }
 
+    // Used before for changing color of dinosaurs.
     void SetRedColors()
     {
         dinosaur_body.GetComponent<Renderer>().material.color = Color.red;
@@ -87,6 +88,7 @@ public class DinoScript : MonoBehaviour
         StartCoroutine(JumpInRow());
     }
 
+    // Same as SetRedColor, used for another type of dino we no longer use in this scene
     IEnumerator JumpInRow()
     {
         // While the dinosaur is red, make it jump and then wait for a short period before the next jump

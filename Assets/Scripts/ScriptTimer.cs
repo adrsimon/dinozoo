@@ -13,7 +13,7 @@ public class ScriptTimer : MonoBehaviour
     {
         startTime = Time.time;
     }
-
+    // affiche à l'ecran les minutes et les secondes
     void Update()
     {
         if (timerActive)
@@ -24,6 +24,7 @@ public class ScriptTimer : MonoBehaviour
             timerText.text = minutes + ":" + seconds;
         }
     }
+    // fonction appelée lors du Game Over pour stoper le timer
     public void StopTimer()
     {
         timerActive = false;
