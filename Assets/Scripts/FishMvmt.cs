@@ -11,51 +11,103 @@ public class FishMvmt : MonoBehaviour
     public float maxThreshold = 1f;
     public float targetHeight = -1f;
 
-    public bool grabbed = false;
-    private bool attachedToRod = false;
     private Rigidbody appat;
 
     private Vector3 targetPosition;
     private float targetThreshold;
+
+    //private Coroutine wander = null;
+   // private Coroutine attach = null;
+
+    private bool fished = false;
+    private bool grabbed = false;
 
     void Start()
     {
         GetComponent<BoxCollider>().isTrigger = true;
         targetThreshold = Random.Range(minThreshold, maxThreshold);
         ChangeTargetPosition();
+     //   wander = StartCoroutine(Wandering());
+        fished = false;
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        Debug.Log("rod" + this.attachedToRod);
-        Debug.Log("grab" + this.grabbed);
-        if (this.grabbed) {
-            return;
-        }
-
-        if (this.attachedToRod && !this.grabbed)
+        if(!fished)
         {
+            float distance = Vector3.Distance(transform.position, targetPosition);
+            if (distance < targetThreshold)
+            {
+                ChangeTargetPosition();
+            }
+            else
+            {
+                MoveTowardsTarget();
+            }
+        }else if (!grabbed)
+        {
+            // StopCoroutine(wander);
+            // attach = StartCoroutine(Attached());
             transform.position = appat.position;
-            return;
+        } else if (grabbed)
+        {
+            Debug.Log("je me détache !!");
+           // StopAllCoroutines();
+           // Destroy(gameObject);
         }
+    }
+    /*
+    IEnumerator Wandering()
+    {
+        Debug.Log("debut de balade dans le monde");
+        while (!fished)
+        {
+           // if (fished)
+            //{
+                Debug.Log("wandering");
+           // }
+            float distance = Vector3.Distance(transform.position, targetPosition);
+            if (distance < targetThreshold)
+            {
+                ChangeTargetPosition();
+            }
+            else
+            {
+                MoveTowardsTarget();
+            }
+            yield return null;
+        }
+            yield return null;
+    }
 
-        float distance = Vector3.Distance(transform.position, targetPosition);
-        if (distance < targetThreshold)
+    IEnumerator Attached()
+    {
+        while (!grabbed)
         {
-            ChangeTargetPosition();
+            Debug.Log("je suis attaché !");
+            transform.position = appat.position;
+            yield return null;      
         }
-        else
-        {
-            MoveTowardsTarget();
-        }
+            yield return null;      
+    }
+    */
+
+    public void SetGrabbed()
+    {
+        Debug.Log("grabbé !");
+        grabbed = true;
+        appat = null;
+        GetComponent<Rigidbody>().useGravity = true;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Appat") && !this.grabbed)
+        if (collision.CompareTag("Appat") && !fished)
         {
-            SetAttachedToRod(true);
+            Debug.Log("collision !");
+            fished = true;
             appat = collision.GetComponent<Rigidbody>();
+            GetComponent<BoxCollider>().isTrigger = false;
         }
     }
 
@@ -83,18 +135,5 @@ public class FishMvmt : MonoBehaviour
             float rotationSpeed = 5f;
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
-    }
-
-    public void SetAttachedToRod(bool value)
-    {
-        attachedToRod = value;
-        GetComponent<BoxCollider>().isTrigger = false;
-    }
-
-    public void SetGrabbed(bool value)
-    {
-        this.grabbed = value;
-        this.attachedToRod = false;
-        GetComponent<Rigidbody>().useGravity = true;
     }
 }

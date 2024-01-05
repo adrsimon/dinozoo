@@ -89,7 +89,7 @@ public class FishThrow : MonoBehaviour
 	{
 		PhysicsDetach(hand);
 
-		FishMvmt mvmt = FindObjectOfType<FishMvmt>();
+		FishMvmt mvmt = GetComponent<FishMvmt>();
 
 		Rigidbody holdingBody = null;
 		Vector3 holdingPoint = Vector3.zero;
@@ -118,9 +118,9 @@ public class FishThrow : MonoBehaviour
 
 			FixedJoint handJoint = hand.gameObject.AddComponent<FixedJoint>();
 			handJoint.connectedBody = holdingBody;
-
-			mvmt.SetGrabbed(true);
 		}
+
+		mvmt.SetGrabbed();
 
 		// Don't let the hand interact with other things while it's holding us
 		hand.HoverLock(null);

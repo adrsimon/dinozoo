@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1157975994557574901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  dinosaur_body1: {fileID: 0}
+  dinosaur_body2: {fileID: 0}
+  dinosaur_body3: {fileID: 0}
   heartContainer: {fileID: 1157975995866480760}
   fullHeart: {fileID: 21300000, guid: 3f0286838dce1a44198ca2c80eed6f15, type: 3}
   emptyHeart: {fileID: 21300000, guid: 3dba7c909513fb94fbbe5b35e2297272, type: 3}

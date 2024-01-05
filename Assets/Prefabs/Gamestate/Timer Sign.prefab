@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5652045083818780903}
   m_Layer: 0
-  m_Name: Gamestate Sign
+  m_Name: Timer Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

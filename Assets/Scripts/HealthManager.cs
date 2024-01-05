@@ -36,8 +36,8 @@ public class HealthManager : MonoBehaviour
             Image heart = new GameObject("Heart").AddComponent<Image>(); // Create a new Image GameObject for each heart
             heart.transform.SetParent(heartContainer.transform, false); // Set the new Image as a child of the heartContainer
             heart.sprite = fullHeart; // Set the sprite of the new Image to the fullHeart sprite
-            heart.rectTransform.anchoredPosition = new Vector2(i * 30, 0); // Set a different position for each heart image
-            heart.rectTransform.sizeDelta = new Vector2(30, 30); // Set the size of the heart image
+            heart.rectTransform.anchoredPosition = new Vector2(i * 0.2f, 0); // Set a different position for each heart image
+            heart.rectTransform.sizeDelta = new Vector2(0.2f, 0.2f); // Set the size of the heart image
             hearts.Add(heart); // Add the new Image to the hearts list
         }
     }
@@ -45,10 +45,9 @@ public class HealthManager : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        UpdateHearts();
     }
 
-    void UpdateHearts()
+    void Update()
     {
         for (int i = 0; i < hearts.Count; i++)
         {
@@ -68,6 +67,7 @@ public class HealthManager : MonoBehaviour
             animator1.SetBool("isDead", true);
             animator2.SetBool("isDead", true);
             animator3.SetBool("isDead", true);
+            FindObjectOfType<ScriptTimer>().StopTimer();
         }
     }
 }
